@@ -1,0 +1,1 @@
+postgresql://tl_admin:tl_local_dev_password@127.0.0.1:5433/taskledger?sslmode=disable

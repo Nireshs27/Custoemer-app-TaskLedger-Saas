@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "lib": ["ESNext"],
+    "types": ["node"],
+    "baseUrl": ".",
+    "paths": {
+      "@shared/*": ["../../packages/shared/src/*"]
+    }
+  },
+  "include": ["src/**/*", "../../packages/shared/src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

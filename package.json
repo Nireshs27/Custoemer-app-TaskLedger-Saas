@@ -1,0 +1,19 @@
+{
+  "name": "taskledger-saas",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev:frontend": "npm run dev -w apps/frontend",
+    "dev:backend": "npm run dev -w apps/backend",
+    "dev": "npm run dev:backend & npm run dev:frontend",
+    "build:shared": "npm run build -w packages/shared",
+    "build:frontend": "npm run build -w apps/frontend",
+    "build:backend": "npm run build -w apps/backend",
+    "build:all": "npm run build:shared && npm run build:frontend && npm run build:backend",
+    "typecheck": "npm run typecheck -w packages/shared && npm run typecheck -w apps/backend && npm run typecheck -w apps/frontend",
+    "db:push": "npm run db:push -w apps/backend"
+  }
+}

@@ -1,0 +1,934 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Wander App - EXACT Pixel-Sampled Colors from Screenshot */
+  
+  /* Backgrounds (Exact from image) */
+  --bg-page: #01021C;
+  --bg-shell: #D5CFD0;
+  --bg-card: #F2F2F1;
+  --bg-card-strong: #ffffff;
+  
+  /* Greens/Teals (Exact from image) */
+  --accent-green: #058A77;
+  --accent-green-dark: #2F6D59;
+  --accent-green-deep: #17483F;
+  
+  /* Accents (Exact from image) */
+  --accent-yellow: #FABF50;
+  
+  /* Text & Neutrals (Exact from image) */
+  --text-main: #010100;
+  --text-muted: #7D6B75;
+  --text-secondary: #AE999F;
+  --border-soft: #C1B9BC;
+  
+  /* Mapped to Tailwind variables */
+  --background: #D5CFD0;
+  --foreground: #010100;
+  --card: #ffffff;
+  --card-foreground: #010100;
+  --popover: #ffffff;
+  --popover-foreground: #010100;
+  --primary: #058A77;
+  --primary-foreground: #ffffff;
+  --secondary: #FABF50;
+  --secondary-foreground: #010100;
+  --muted: #F2F2F1;
+  --muted-foreground: #7D6B75;
+  --accent: #FABF50;
+  --accent-foreground: #010100;
+  --success: #058A77;
+  --success-foreground: #ffffff;
+  --warning: #FABF50;
+  --warning-foreground: #010100;
+  --destructive: #EF4444;
+  --destructive-foreground: #ffffff;
+  --dark: #01021C;
+  --dark-foreground: #ffffff;
+  --border: #C1B9BC;
+  --input: #eeecea;
+  --ring: #058A77;
+  --chart-1: #058A77;
+  --chart-2: #FABF50;
+  --chart-3: #2F6D59;
+  --chart-4: #7D6B75;
+  --chart-5: #AE999F;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #010100;
+  --sidebar-primary: #058A77;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #F2F2F1;
+  --sidebar-accent-foreground: #058A77;
+  --sidebar-border: #C1B9BC;
+  --sidebar-ring: #058A77;
+  
+  /* Typography (Montserrat) */
+  --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-serif: Georgia, serif;
+  --font-mono: "SF Mono", Menlo, monospace;
+  
+  /* Border Radius (Measured from image proportions) */
+  --radius: 24px;
+  --radius-shell: 32px;
+  --radius-pill: 9999px;
+  
+  /* Shadows (Soft, natural) */
+  --shadow-card: 0 4px 16px rgba(1, 2, 28, 0.08);
+  --shadow-card-hover: 0 8px 24px rgba(1, 2, 28, 0.12);
+  --shadow-lg: 0 12px 32px rgba(1, 2, 28, 0.10);
+  --shadow-xl: 0 20px 48px rgba(1, 2, 28, 0.14);
+  
+  /* Typography Scale */
+  --tracking-tight: 0.01em;
+  --tracking-normal: 0.02em;
+  --spacing: 0.25rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply text-sm leading-relaxed sm:text-base sm:leading-normal font-sans antialiased bg-background text-foreground;
+  }
+
+  /* All Input Fields - Box Shadow Style */
+  input,
+  textarea,
+  select,
+  [role="combobox"],
+  .search-field,
+  .filter-dropdown {
+    background-color: #eeecea !important;
+    border: none !important;
+  }
+
+  input:focus,
+  textarea:focus,
+  select:focus,
+  [role="combobox"]:focus {
+    outline: none !important;
+  }
+  /* Wander App - Custom Button Styles (Exact Colors) */
+  .btn-primary {
+    background-color: #058A77;
+    color: #ffffff;
+    font-weight: 700;
+    padding: 12px 24px;
+    border-radius: 9999px;
+    box-shadow: 0 4px 16px rgba(1, 2, 28, 0.12);
+    transition: all 200ms;
+  }
+
+  .btn-primary:hover {
+    background-color: #2F6D59;
+  }
+
+  .btn-secondary {
+    background-color: #FABF50;
+    color: #010100;
+    font-weight: 700;
+    padding: 12px 24px;
+    border-radius: 9999px;
+    box-shadow: 0 4px 16px rgba(1, 2, 28, 0.12);
+    transition: all 200ms;
+  }
+
+  .btn-secondary:hover {
+    background-color: #F5A823;
+  }
+
+  .btn-dark {
+    background-color: #01021C;
+    color: #ffffff;
+    font-weight: 700;
+    padding: 12px 24px;
+    border-radius: 9999px;
+    box-shadow: 0 4px 16px rgba(1, 2, 28, 0.12);
+    transition: all 200ms;
+  }
+
+  .btn-dark:hover {
+    background-color: #17483F;
+  }
+
+  .btn-outline {
+    background-color: #ffffff;
+    color: #010100;
+    font-weight: 700;
+    padding: 12px 24px;
+    border-radius: 9999px;
+    border: 2px solid #C1B9BC;
+    box-shadow: 0 4px 12px rgba(1, 2, 28, 0.08);
+    transition: all 200ms;
+  }
+
+  .btn-outline:hover {
+    background-color: #F2F2F1;
+  }
+
+  /* Wander App - Card & Modal Styles (Exact Colors) */
+  
+  /* Calendar-specific card styling (narrowed from global override) */
+  [data-testid="fantastical-calendar"] [role="dialog"],
+  [data-testid="fantastical-calendar"] [data-radix-dialog-content] {
+    background-color: #ffffff !important;
+    border-radius: 32px !important;
+    border: none !important;
+  }
+
+  /* Calendar Grid Date Cells - No Border Radius, With Very Light Borders */
+  [data-testid^="calendar-date-"],
+  [data-testid="fantastical-calendar"] .grid > div {
+    border-radius: 0 !important;
+    border: 0.5px solid rgba(193, 185, 188, 0.3) !important;
+  }
+  
+  [data-testid^="calendar-date-"] {
+    box-shadow: none !important;
+  }
+
+  /* Mini Calendar - Remove All Borders from Date Cells */
+  .p-4 .grid.gap-1.text-xs,
+  .p-4 .grid.gap-1.text-xs > *,
+  .p-4 .grid.gap-1.text-xs button,
+  .p-4 .grid.gap-1 button.rounded-full,
+  .p-4 > div > .grid button,
+  .p-4 .grid.gap-1.text-xs div,
+  div[class*="p-4"] button[class*="rounded-full"],
+  button[class*="h-8"][class*="min-w"][class*="rounded-full"] {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    border-width: 0 !important;
+    border-style: none !important;
+  }
+  
+  .p-4 .grid.gap-1.text-xs button:focus,
+  .p-4 .grid.gap-1 button.rounded-full:focus,
+  .p-4 .grid.gap-1.text-xs button:hover,
+  .p-4 .grid.gap-1.text-xs button:active,
+  div[class*="p-4"] button[class*="rounded-full"]:focus,
+  div[class*="p-4"] button[class*="rounded-full"]:hover,
+  div[class*="p-4"] button[class*="rounded-full"]:active {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  .card-wander-sm {
+    background-color: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 4px 12px rgba(1, 2, 28, 0.06);
+    border: none;
+    overflow: hidden;
+  }
+
+  .card-dark {
+    background-color: #01021C;
+    border-radius: 32px;
+    box-shadow: 0 8px 24px rgba(1, 2, 28, 0.16);
+    border: none;
+    overflow: hidden;
+    color: #ffffff;
+  }
+
+  /* Modal Overlays */
+  [data-radix-dialog-overlay] {
+    background-color: rgba(1, 2, 28, 0.6) !important;
+    backdrop-filter: blur(4px);
+  }
+
+  /* Wander App - Badge Styles (Exact Colors) */
+  .badge-teal {
+    background-color: #058A77;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 9999px;
+  }
+
+  .badge-yellow {
+    background-color: #FABF50;
+    color: #010100;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 9999px;
+  }
+
+  .badge-dark {
+    background-color: #01021C;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 9999px;
+  }
+
+  /* ULTRA BRIGHT box shadows - Screenshot #2 style in NORMAL state */
+  .card-elevated {
+    @apply shadow-elevated hover:shadow-elevated-hover transition-shadow duration-200;
+  }
+
+  .card-soft {
+    @apply shadow-soft hover:shadow-card transition-shadow duration-200;
+  }
+
+  /* Maximum brightness shadow - Screenshot #2 as default */
+  .shadow-bright {
+    box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.35), 0 10px 20px -5px rgba(0, 0, 0, 0.25);
+  }
+
+  .shadow-bright:hover {
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.40), 0 12px 24px -6px rgba(0, 0, 0, 0.30);
+  }
+
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    background-color: hsl(var(--border));
+  }
+
+  .calendar-cell {
+    background-color: hsl(var(--card));
+    min-height: 120px;
+    padding: 8px;
+    position: relative;
+  }
+
+  .due-indicator {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  .due-indicator.overdue { 
+    background-color: hsl(var(--destructive)); 
+  }
+  
+  .due-indicator.upcoming { 
+    background-color: hsl(var(--chart-2)); 
+  }
+  
+  .due-indicator.completed { 
+    background-color: hsl(160, 84%, 39%); 
+  }
+}
+
+/* ========================================================== 
+   CALENDAR PRINT STYLES - Multi-Page Support
+   Supports unlimited pages with mixed orientations
+   ========================================================== */
+
+/* ==========================================================
+   PAGE CONFIGURATION - Mixed Orientations (TOP LEVEL)
+   ========================================================== */
+
+/* Page 1: Landscape calendar grid */
+@page:first {
+  size: A4 landscape;
+  margin: 0;
+}
+
+/* Page 2 and beyond: Portrait for details/statistics */
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+@media print {
+
+  /* ==========================================================
+     CRITICAL: Enable Multi-Page Flow
+     ========================================================== */
+  
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    background: #ffffff !important;
+    overflow: visible !important; /* CRITICAL: Allows pagination */
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Reset outer layout shell when printing the calendar */
+  body[data-print="calendar"] {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    overflow: visible !important;
+  }
+
+  /* Flatten React root + main app containers - white background only */
+  body[data-print="calendar"] #root,
+  body[data-print="calendar"] #root > *,
+  body[data-print="calendar"] #root > * > * {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: none !important;
+    background: #ffffff !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
+  }
+
+  /* ==========================================================
+     GATING: Hide everything except print containers
+     ========================================================== */
+  
+  body[data-print="calendar"] * {
+    visibility: hidden !important;
+  }
+  
+  body[data-print="calendar"] header,
+  body[data-print="calendar"] nav,
+  body[data-print="calendar"] aside {
+    display: none !important;
+  }
+  
+  /* Ensure parent containers are visible for proper rendering */
+  body[data-print="calendar"],
+  body[data-print="calendar"] > *,
+  body[data-print="calendar"] > * > *,
+  body[data-print="calendar"] > * > * > * {
+    visibility: visible !important;
+  }
+  
+  /* Show all print containers and their children */
+  body[data-print="calendar"] #calendar-print-root,
+  body[data-print="calendar"] #calendar-print-root *,
+  body[data-print="calendar"] .calendar-print-page,
+  body[data-print="calendar"] .calendar-print-page * { 
+    visibility: visible !important;
+  }
+
+  /* ==========================================================
+     PAGE 1: Calendar Grid (Landscape)
+     ========================================================== */
+
+  #calendar-print-root {
+    position: absolute !important; /* Absolute for precise full-page positioning */
+    top: 0 !important;
+    left: 0 !important;
+    width: 297mm !important;
+    height: 210mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    page-break-after: always !important; /* CRITICAL: Forces page 2 to new sheet */
+    page-break-inside: avoid !important;
+  }
+
+  #calendar-print-root .flex-1,
+  #calendar-print-root .flex-1.overflow-auto {
+    width: 100% !important;
+    flex: 1 !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  /* Hide UI chrome during print */
+  #calendar-print-root .w-80,
+  #calendar-print-root .border-b.bg-card,
+  #calendar-print-root button,
+  #calendar-print-root [role="button"],
+  #calendar-print-root input,
+  #calendar-print-root select,
+  #calendar-print-root textarea {
+    display: none !important;
+  }
+
+  /* ==========================================================
+     CALENDAR GRID: Full-bleed layout
+     ========================================================== */
+
+  #calendar-print-root .grid.grid-cols-7 {
+    display: grid !important;
+    grid-template-columns: repeat(7, 1fr) !important;
+    grid-template-rows: auto repeat(5, 1fr) !important;
+    width: calc(100% + 1pt) !important;
+    height: calc(100% + 1pt) !important;
+    flex: 1 !important;
+    margin: 5px !important;
+    padding: 0 !important;
+    gap: 1pt !important;
+    background: #000000 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    box-shadow: none !important;
+    page-break-inside: avoid !important; /* Keep grid intact */
+  }
+
+  /* Weekday headers */
+  #calendar-print-root .grid.grid-cols-7 > div:nth-child(-n+7) {
+    background: #f5f5f5 !important;
+    color: #000000 !important;
+    font-weight: 600 !important;
+    font-size: 9pt !important;
+    text-align: center !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    padding: 8pt 4pt !important;
+    box-shadow: none !important;
+  }
+
+  /* Day cells - FIXED HEIGHT to prevent expansion */
+  #calendar-print-root .grid.grid-cols-7 > div:nth-child(n+8) {
+    position: relative !important;
+    background: #ffffff !important;
+    padding: 6pt !important;
+    height: 90pt !important; /* ✅ Fixed height (not min-height) */
+    max-height: 90pt !important; /* ✅ Enforce maximum */
+    overflow: hidden !important; /* ✅ Prevent vertical expansion */
+    display: flex !important;
+    flex-direction: column !important;
+    page-break-inside: avoid !important;
+    box-shadow: none !important;
+  }
+
+  /* Today highlight */
+  #calendar-print-root .grid.grid-cols-7 > div[aria-current="date"] {
+    background: #e8f0ff !important;
+    box-shadow: none !important;
+  }
+
+  /* Day number */
+  #calendar-print-root .grid.grid-cols-7 > div > div:first-child {
+    font-size: 7pt !important;
+    font-weight: 400 !important;
+    color: #000000 !important;
+    line-height: 1 !important;
+    margin-bottom: 4pt !important;
+  }
+
+  #calendar-print-root .grid.grid-cols-7 > div[aria-current="date"] > div:first-child {
+    color: #0066cc !important;
+    font-weight: 400 !important;
+  }
+
+  /* Event chips */
+  #calendar-print-root .grid.grid-cols-7 > div > div > div[class*="rounded"] {
+    border-radius: 3pt !important;
+    border: 1.2pt solid !important;
+    padding: 2pt 4pt !important;
+    margin: 1pt 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 3pt !important;
+    line-height: 1.2 !important;
+    max-width: 100%;
+    transition: none !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+  }
+
+  #calendar-print-root .grid.grid-cols-7 > div > div > div[class*="rounded"] span {
+    font-weight: 400 !important;
+    font-size: 6pt !important; /* ✅ Reduced from 6pt to 5pt */
+    color: #000000 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  #calendar-print-root .grid.grid-cols-7 > div > div > div[class*="rounded"] svg {
+    width: 8pt !important;
+    height: 8pt !important;
+    flex-shrink: 0 !important;
+    opacity: 1 !important;
+  }
+
+  /* Event category colors */
+  #calendar-print-root .bg-blue-100 {
+    background-color: #cce5ff !important;
+    border-color: #0066cc !important;
+  }
+  #calendar-print-root .bg-purple-100 {
+    background-color: #e6d9ff !important;
+    border-color: #7722cc !important;
+  }
+  #calendar-print-root .bg-green-100 {
+    background-color: #ccf5cc !important;
+    border-color: #009900 !important;
+  }
+  #calendar-print-root .bg-orange-100 {
+    background-color: #ffe6cc !important;
+    border-color: #cc6600 !important;
+  }
+  #calendar-print-root .bg-red-100 {
+    background-color: #ffcccc !important;
+    border-color: #cc0000 !important;
+  }
+  #calendar-print-root .bg-yellow-100 {
+    background-color: #fff5cc !important;
+    border-color: #cc9900 !important;
+  }
+
+  /* Hide previous/next month dates */
+  #calendar-print-root .grid.grid-cols-7 > div.bg-muted\/30 { 
+    background: #ffffff !important; 
+  }
+  #calendar-print-root .grid.grid-cols-7 > div.bg-muted\/30 *, 
+  #calendar-print-root .grid.grid-cols-7 > div.is-outside-month *, 
+  #calendar-print-root .grid.grid-cols-7 > div[data-outside-month="true"] * { 
+    display: none !important; 
+  }
+
+  /* Event chips wrapper - constrain to cell height */
+  #calendar-print-root .grid.grid-cols-7 > div > div[class*="space-y"] {
+    display: block !important;
+    flex: 1 !important; /* ✅ Take remaining space after day number */
+    overflow: hidden !important; /* ✅ Hide overflow tasks */
+    max-height: 100% !important; /* ✅ Don't exceed parent cell */
+  }
+
+  /* Remove ALL shadows and text shadows */
+  #calendar-print-root *,
+  #calendar-print-root *::before,
+  #calendar-print-root *::after {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* ==========================================================
+     PAGE 2+: Additional Pages (Portrait)
+     Generic class for any additional print pages
+     ========================================================== */
+
+  .calendar-print-page {
+    position: static !important;
+    width: 100% !important;
+    min-height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    box-sizing: border-box !important;
+    page-break-before: always !important;
+    visibility: visible !important;
+    display: block !important;
+  }
+
+  /* Inner wrapper (the first <div> inside .calendar-print-page) */
+  .calendar-print-page > div {
+    width: 100% !important;
+    min-height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Remove left/right padding from header */
+  .calendar-print-page h1 {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* Remove side padding from the main body wrapper */
+  .calendar-print-page > div > div:first-of-type {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* Remove side margins in the footer strip */
+  .calendar-print-page > div > div:last-of-type {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* Optional: page-break-after for additional pages */
+  .calendar-print-page.page-break-after {
+    page-break-after: always !important;
+  }
+}
+
+/* ==========================================================
+   SCREEN: Hide print pages on screen
+   ========================================================== */
+@media screen {
+  .calendar-print-page {
+    display: none !important;
+  }
+}
+
+/* ================================
+   CALENDAR VIEW — Modern Screen UI
+   (non-print; complements your print CSS)
+   ================================ */
+:root{
+  --cal-bg: #ffffff;
+  --cal-panel: #ffffff;
+  --cal-muted: #f6f7f9;
+  --cal-border: #E5E7EB;
+  --cal-text: #0f172a;          /* slate-900 */
+  --cal-subtext: #64748b;       /* slate-500 */
+  --cal-today: #eef2ff;         /* indigo-50 */
+  --cal-primary: #2563eb;       /* indigo-600 */
+  --cal-radius: 16px;
+  --cal-shadow: 0 10px 30px rgba(2,6,23,.08);
+  --cal-cell-pad: 12px;
+  --cal-cell-minh: 120px;       /* density: "Comfortable" */
+}
+
+/* Calendar shell */
+[data-testid="fantastical-calendar"]{
+  background: var(--cal-panel);
+  border: 1px solid var(--cal-border);
+  border-radius: var(--cal-radius);
+  box-shadow: var(--cal-shadow);
+  overflow: hidden;
+}
+
+/* Left app sidebar (screen only) */
+@media screen {
+  .w-80.border-r{
+    background: linear-gradient(180deg,#ffffff, #fbfbfc);
+    border-right: 1px solid var(--cal-border) !important;
+  }
+}
+
+/* Top header bar */
+[data-testid="fantastical-calendar"] .border-b.bg-card{
+  background: linear-gradient(180deg,#ffffff, #fafafa);
+  border-bottom: 1px solid var(--cal-border) !important;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* Grid container */
+[data-testid="fantastical-calendar"] .flex-1.overflow-auto{
+  background: var(--cal-bg);
+}
+
+/* Weekday header cells (first 7 items) */
+.grid.grid-cols-7 > div:nth-child(-n+7){
+  background: #fbfbfd;
+  color: var(--cal-subtext);
+  border-bottom: 1px solid var(--cal-border);
+  font-weight: 400;
+  letter-spacing: .2px;
+}
+
+/* Month grid */
+.grid.grid-cols-7{
+  gap: 0 !important;
+}
+
+/* Day cells */
+.grid.grid-cols-7 > div:nth-child(n+8){
+  background: #fff;
+  border-right: 1px solid var(--cal-border);
+  border-bottom: 1px solid var(--cal-border);
+  min-height: var(--cal-cell-minh);
+  padding: var(--cal-cell-pad);
+  transition: background .2s ease, box-shadow .2s ease;
+}
+
+.grid.grid-cols-7 > div:nth-child(7n){ border-right: none; }
+
+/* Subtle hover and focus */
+.grid.grid-cols-7 > div:nth-child(n+8):hover{
+  background: var(--cal-muted);
+}
+
+/* "Other month" days (you already add .bg-muted/30) */
+.grid.grid-cols-7 > div.bg-muted\/30{
+  background: #fbfbfd !important;
+  color: #9aa4b2 !important;
+}
+
+/* Today highlight – add .is-today or [aria-current="date"] to today's cell */
+.grid.grid-cols-7 > div.is-today,
+.grid.grid-cols-7 > div[aria-current="date"]{
+  background: var(--cal-today);
+  box-shadow: inset 0 0 0 2px rgba(37,99,235,.25);
+}
+
+/* Day number (assumes it's the first child) */
+.grid.grid-cols-7 > div > div:first-child{
+  font-weight: 500;
+  color: var(--cal-text);
+}
+
+/* Event chips (rounded card look) */
+.grid.grid-cols-7 > div > div > div[class*="rounded"]{
+  background: rgba(255,255,255,.85);
+  backdrop-filter: blur(4px);
+  border: 1px solid var(--cal-border);
+  border-left-width: 3px;
+  border-radius: 10px !important;
+  padding: 4px 8px !important;
+  margin: 4px 0 !important;
+  font-size: 12px !important;
+  line-height: 1.2 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  max-width: 100%;
+  box-shadow: 0 6px 18px rgba(2,6,23,.06);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.grid.grid-cols-7 > div > div > div[class*="rounded"]:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(2,6,23,.10);
+}
+
+/* Event text truncation */
+.grid.grid-cols-7 > div > div > div[class*="rounded"] span{
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* Small colored dot at start of chip */
+.grid.grid-cols-7 > div > div > div[class*="rounded"] > div[class*="rounded-full"]{
+  width: 8px !important;
+  height: 8px !important;
+  border: 1px solid rgba(0,0,0,.1);
+}
+
+/* Weekend shading (Sun & Sat columns) */
+.grid.grid-cols-7 > div:nth-child(7n+1),
+.grid.grid-cols-7 > div:nth-child(7n){
+  background: #fcfcfe;
+}
+
+/* Density modes (optional utilities you can toggle on the wrapper) */
+[data-density="compact"]{
+  --cal-cell-minh: 96px;
+  --cal-cell-pad: 8px;
+}
+
+[data-density="cozy"]{
+  --cal-cell-minh: 140px;
+  --cal-cell-pad: 14px;
+}
+
+/* Modern input focus styling with 1px border */
+input:focus,
+textarea:focus,
+select:focus {
+  border-width: 1px !important;
+  outline: none !important;
+}
+
+/* Maintain existing focus ring color */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  border-width: 1px !important;
+}
+
+@layer utilities {
+  /* Occurrence card shadows */
+  .shadow-occurrence {
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  }
+
+  .shadow-occurrence-hover {
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  }
+
+  /* Hide scrollbar utility - allows scrolling but hides the bar */
+  .hide-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari, Opera */
+  }
+
+  /* Responsive page container */
+  .page-container {
+    @apply p-4 sm:p-6 lg:p-8 max-w-[1800px] mx-auto text-sm sm:text-base;
+  }
+
+  /* Filter bar that stacks on mobile */
+  .filter-bar {
+    @apply flex flex-col sm:flex-row sm:items-center gap-3;
+  }
+
+  .filter-bar-controls {
+    @apply flex flex-col sm:flex-row sm:items-center gap-3 w-full sm:w-auto;
+  }
+
+  /* Modal footer that stacks on mobile */
+  .modal-footer-actions {
+    @apply flex flex-col-reverse sm:flex-row sm:justify-end gap-2 pt-4 [&>button]:w-full [&>button]:sm:w-auto;
+  }
+
+  /* Mobile typography scale — one step smaller inside app shells */
+  @media (max-width: 639px) {
+    .page-container .text-4xl,
+    .auth-page .text-4xl {
+      font-size: 1.5rem !important;
+      line-height: 2rem !important;
+    }
+
+    .page-container .text-3xl,
+    .auth-page .text-3xl {
+      font-size: 1.25rem !important;
+      line-height: 1.75rem !important;
+    }
+
+    .page-container .text-2xl,
+    .auth-page .text-2xl {
+      font-size: 1.125rem !important;
+      line-height: 1.75rem !important;
+    }
+
+    .page-container .text-xl,
+    .auth-page .text-xl {
+      font-size: 1rem !important;
+      line-height: 1.5rem !important;
+    }
+
+    .page-container .text-lg,
+    .auth-page .text-lg {
+      font-size: 0.875rem !important;
+      line-height: 1.25rem !important;
+    }
+
+    .page-container th,
+    .page-container td {
+      @apply px-2 py-2 text-xs;
+    }
+  }
+}
